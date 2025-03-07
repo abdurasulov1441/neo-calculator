@@ -158,40 +158,70 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 ),
               ],
             ),
-            child: Column(
-              children: [
-                GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                  ),
-                  itemCount: 16,
-                  itemBuilder: (context, index) {
-                    List<String> buttons = [
-                      "C", "⌫", "%", "÷",
-                      "7", "8", "9", "×",
-                      "4", "5", "6", "−",
-                      "1", "2", "3", "+",
-                    ];
-                    return _buildButton(buttons[index], isOperator: "÷×−+%C⌫".contains(buttons[index]));
-                  },
-                ),
-                const SizedBox(height: 10),
-              Row(
+           child: Column(
   children: [
-    _buildButton("0", flex: 1), // "0" занимает 2 клетки
-    
-    _buildButton("."),
-   
-    _buildEquallButton("=", isOperator: true, flex: 2), // "=" увеличен
+    // Первая строка кнопок
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildButton("C", isOperator: true),
+        _buildButton("⌫", isOperator: true),
+        _buildButton("%", isOperator: true),
+        _buildButton("÷", isOperator: true),
+      ],
+    ),
+    const SizedBox(height: 10),
+
+    // Вторая строка кнопок
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildButton("7"),
+        _buildButton("8"),
+        _buildButton("9"),
+        _buildButton("×", isOperator: true),
+      ],
+    ),
+    const SizedBox(height: 10),
+
+    // Третья строка кнопок
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildButton("4"),
+        _buildButton("5"),
+        _buildButton("6"),
+        _buildButton("−", isOperator: true),
+      ],
+    ),
+    const SizedBox(height: 10),
+
+    // Четвёртая строка кнопок
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildButton("1"),
+        _buildButton("2"),
+        _buildButton("3"),
+        _buildButton("+", isOperator: true),
+      ],
+    ),
+    const SizedBox(height: 10),
+
+    // Пятая строка кнопок (0, ., =)
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Expanded(child: _buildButton("0")), // "0" занимает больше места
+        const SizedBox(width: 10),
+        _buildButton("."),
+        const SizedBox(width: 10),
+        Expanded(child: _buildEquallButton("=", isOperator: true)), // "=" занимает больше места
+      ],
+    ),
   ],
 ),
 
-              ],
-
-            ),
           ),
         ],
       ),
